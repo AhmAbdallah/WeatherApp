@@ -1,0 +1,54 @@
+PODS:
+  - Alamofire (5.2.1)
+  - Dodo (13.0.0)
+  - IQKeyboardManagerSwift (6.5.5)
+  - lottie-ios (3.1.8)
+  - Moya/Core (14.0.0):
+    - Alamofire (~> 5.0)
+  - Moya/RxSwift (14.0.0):
+    - Moya/Core
+    - RxSwift (~> 5.0)
+  - R.swift (5.2.2):
+    - R.swift.Library (~> 5.2.0)
+  - R.swift.Library (5.2.0)
+  - RxSwift (5.1.1)
+  - SwiftLint (0.39.2)
+  - SwiftyJSON (5.0.0)
+
+DEPENDENCIES:
+  - Dodo
+  - IQKeyboardManagerSwift
+  - lottie-ios
+  - Moya/RxSwift
+  - R.swift
+  - SwiftLint
+  - SwiftyJSON
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Dodo
+    - IQKeyboardManagerSwift
+    - lottie-ios
+    - Moya
+    - R.swift
+    - R.swift.Library
+    - RxSwift
+    - SwiftLint
+    - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
+  Dodo: e13a732c6f95b48fbf7001d483c0f4ee967a78dd
+  IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
+  lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
+  Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
+  R.swift: 7c52cdc57a66840ffe6cbd8a823d732059d42a32
+  R.swift.Library: 5ba4f1631300caf9a4d890186930da85d540769d
+  RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
+  SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+
+PODFILE CHECKSUM: 83bd4a4cf5a440e9ba4421a74bd4c4177eb3f0a2
+
+COCOAPODS: 1.9.2
