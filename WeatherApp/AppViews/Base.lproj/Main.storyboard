@@ -1,74 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pky-nd-gpN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ilP-uG-ErY">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Roboto-Medium.ttf">
-            <string>Roboto-Medium</string>
-        </array>
         <array key="Roboto-Regular.ttf">
             <string>Roboto-Regular</string>
         </array>
     </customFonts>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="e46-q4-3Xn">
-            <objects>
-                <viewController id="pky-nd-gpN" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="AZq-u3-B8d">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Screen Shot 2020-08-03 at 14.54.25" translatesAutoresizingMaskIntoConstraints="NO" id="add-PP-fLT">
-                                <rect key="frame" x="-1" y="29" width="414" height="849"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KYY-fo-Lhp">
-                                <rect key="frame" x="0.0" y="71" width="414" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iconBackBtn" translatesAutoresizingMaskIntoConstraints="NO" id="MpF-RR-nQ1">
-                                        <rect key="frame" x="18" y="20" width="20" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jcB-c9-3ly">
-                                        <rect key="frame" x="58" y="8" width="340" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iconSearch" translatesAutoresizingMaskIntoConstraints="NO" id="ed7-4f-Ixq">
-                                                <rect key="frame" x="303" y="12" width="20" height="20"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </imageView>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4rC-qW-3lI">
-                                                <rect key="frame" x="8" y="5" width="287" height="34"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="tintColor" name="purplyBlue"/>
-                                                <color key="textColor" name="slate"/>
-                                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="12"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="UNj-wH-ruA"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jzC-uP-Mp1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="52.173913043478265" y="375"/>
-        </scene>
         <!--Custom Launch ScreenVC-->
         <scene sceneID="iAg-Z3-j1e">
             <objects>
@@ -97,15 +41,4 @@
             <point key="canvasLocation" x="-614" y="427"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Screen Shot 2020-08-03 at 14.54.25" width="371" height="756"/>
-        <image name="iconBackBtn" width="16" height="16"/>
-        <image name="iconSearch" width="16" height="17"/>
-        <namedColor name="purplyBlue">
-            <color red="0.46000000834465027" green="0.0080000003799796104" blue="0.99299997091293335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="slate">
-            <color red="0.29800000786781311" green="0.32199999690055847" blue="0.3919999897480011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-    </resources>
 </document>

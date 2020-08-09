@@ -1193,7 +1193,7 @@ struct _R: Rswift.Validatable {
 
     #if os(iOS) || os(tvOS)
     struct main: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
-      typealias InitialController = UIKit.UIViewController
+      typealias InitialController = CustomLaunchScreenVC
 
       let bundle = R.hostingBundle
       let customLaunchScreenVC = StoryboardViewControllerResource<CustomLaunchScreenVC>(identifier: "CustomLaunchScreenVC")
@@ -1204,12 +1204,7 @@ struct _R: Rswift.Validatable {
       }
 
       static func validate() throws {
-        if UIKit.UIImage(named: "Screen Shot 2020-08-03 at 14.54.25", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Screen Shot 2020-08-03 at 14.54.25' is used in storyboard 'Main', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "iconBackBtn", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'iconBackBtn' is used in storyboard 'Main', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "iconSearch", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'iconSearch' is used in storyboard 'Main', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
-          if UIKit.UIColor(named: "purplyBlue", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'purplyBlue' is used in storyboard 'Main', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "slate", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'slate' is used in storyboard 'Main', but couldn't be loaded.") }
         }
         if _R.storyboard.main().customLaunchScreenVC() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'customLaunchScreenVC' could not be loaded from storyboard 'Main' as 'CustomLaunchScreenVC'.") }
       }
