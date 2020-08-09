@@ -65,12 +65,11 @@ extension CitiesVC {
       citiesCollectionView.reloadData()
     }
   }
+  
   @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
-    //showProgress()
-    //getSlider()
-    //self.setupSlider()
     refreshcontrol.endRefreshing()
   }
+  
   private func setupViewUI() {
     let flowLayout = UICollectionViewFlowLayout()
     citiesCollectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: flowLayout)
@@ -105,13 +104,15 @@ extension CitiesVC: UICollectionViewDataSource {
     return 1
   }
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 5
+    return 10
   }
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     if editingModeIsActive {
       guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EditingCityCVCell.identifier,
                                                           for: indexPath) as? EditingCityCVCell else {
                                                             fatalError("Unexpected Index Path")}
+      cell.editingCityCVCellDelegate = self
+      cell.indexPath = indexPath
       return cell
     } else {
       guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CityCVCell.identifier,
@@ -160,3 +161,11 @@ extension CitiesVC: ViewControllerDelegate {
 //    productReturningCV.reloadData()
 //  }
 //}
+
+extension CitiesVC: EditingCityCVCellDelegate {
+  func tapDelete(indexPath: IndexPath) {
+    citiesCollectionView.deleteItems(at: [indexPath])
+  }
+  func tapEdit(indexPath: IndexPath) {
+  }
+}

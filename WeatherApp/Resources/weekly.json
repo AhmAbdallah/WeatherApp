@@ -1,0 +1,51 @@
+{"data" : [
+  {
+    "id": 1,
+    "day": "Pazartesi",
+    "image": "rain",
+    "maxDegree": 9,
+    "minDegree": 3
+  },
+  {
+    "id": 2,
+    "day": "Salı",
+    "image": "lightRain2",
+    "maxDegree": 12,
+    "minDegree": 6
+  },
+  {
+    "id": 3,
+    "day": "Çarşamba",
+    "image": "thunderstorm",
+    "maxDegree": 25,
+    "minDegree": 12
+  },
+  {
+    "id": 4,
+    "day": "Perşembe",
+    "image": "rain2",
+    "maxDegree": 34,
+    "minDegree": 16
+  },
+  {
+    "id": 5,
+    "day": "Cuma",
+    "image": "clearSky",
+    "maxDegree": 8,
+    "minDegree": 7
+  },
+  {
+    "id": 6,
+    "day": "Cumartesi",
+    "image": "lightRain",
+    "maxDegree": 19,
+    "minDegree": 13
+  },
+  {
+    "id": 7,
+    "day": "Pazar",
+    "image": "thunderstorm",
+    "maxDegree": 11,
+    "minDegree": 4
+  }
+]}

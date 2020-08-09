@@ -12,4 +12,5 @@ class TimeCVCell: UICollectionViewCell {
   static let identifier = "TimeCVCell"
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var hourLBL: UILabel!
+  @IBOutlet weak var cityView: UIView!
 }

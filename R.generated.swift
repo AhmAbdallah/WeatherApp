@@ -176,7 +176,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.file` struct is generated, and contains static references to 15 files.
+  /// This `R.file` struct is generated, and contains static references to 17 files.
   struct file {
     /// Resource file `.gitkeep`.
     static let gitkeep = Rswift.FileResource(bundle: R.hostingBundle, name: ".gitkeep", pathExtension: "")
@@ -206,8 +206,12 @@ struct R: Rswift.Validatable {
     static let robotoThinTtf = Rswift.FileResource(bundle: R.hostingBundle, name: "Roboto-Thin", pathExtension: "ttf")
     /// Resource file `Roboto-ThinItalic.ttf`.
     static let robotoThinItalicTtf = Rswift.FileResource(bundle: R.hostingBundle, name: "Roboto-ThinItalic", pathExtension: "ttf")
+    /// Resource file `cities.json`.
+    static let citiesJson = Rswift.FileResource(bundle: R.hostingBundle, name: "cities", pathExtension: "json")
     /// Resource file `wAppAnimation.json`.
     static let wAppAnimationJson = Rswift.FileResource(bundle: R.hostingBundle, name: "wAppAnimation", pathExtension: "json")
+    /// Resource file `weekly.json`.
+    static let weeklyJson = Rswift.FileResource(bundle: R.hostingBundle, name: "weekly", pathExtension: "json")
 
     /// `bundle.url(forResource: ".gitkeep", withExtension: "")`
     static func gitkeep(_: Void = ()) -> Foundation.URL? {
@@ -293,9 +297,21 @@ struct R: Rswift.Validatable {
       return fileResource.bundle.url(forResource: fileResource)
     }
 
+    /// `bundle.url(forResource: "cities", withExtension: "json")`
+    static func citiesJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.citiesJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
     /// `bundle.url(forResource: "wAppAnimation", withExtension: "json")`
     static func wAppAnimationJson(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.wAppAnimationJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "weekly", withExtension: "json")`
+    static func weeklyJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.weeklyJson
       return fileResource.bundle.url(forResource: fileResource)
     }
 
@@ -407,10 +423,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 18 images.
+  /// This `R.image` struct is generated, and contains static references to 24 images.
   struct image {
     /// Image `Screen Shot 2020-08-03 at 14.54.25`.
     static let screenShot20200803At145425 = Rswift.ImageResource(bundle: R.hostingBundle, name: "Screen Shot 2020-08-03 at 14.54.25")
+    /// Image `clearSky`.
+    static let clearSky = Rswift.ImageResource(bundle: R.hostingBundle, name: "clearSky")
     /// Image `group40`.
     static let group40 = Rswift.ImageResource(bundle: R.hostingBundle, name: "group40")
     /// Image `iconAddNewCity`.
@@ -445,11 +463,28 @@ struct R: Rswift.Validatable {
     static let iconUp = Rswift.ImageResource(bundle: R.hostingBundle, name: "iconUp")
     /// Image `iconWind`.
     static let iconWind = Rswift.ImageResource(bundle: R.hostingBundle, name: "iconWind")
+    /// Image `lightRain2`.
+    static let lightRain2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "lightRain2")
+    /// Image `lightRain`.
+    static let lightRain = Rswift.ImageResource(bundle: R.hostingBundle, name: "lightRain")
+    /// Image `rain2`.
+    static let rain2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "rain2")
+    /// Image `rain`.
+    static let rain = Rswift.ImageResource(bundle: R.hostingBundle, name: "rain")
+    /// Image `thunderstorm`.
+    static let thunderstorm = Rswift.ImageResource(bundle: R.hostingBundle, name: "thunderstorm")
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "Screen Shot 2020-08-03 at 14.54.25", bundle: ..., traitCollection: ...)`
     static func screenShot20200803At145425(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.screenShot20200803At145425, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "clearSky", bundle: ..., traitCollection: ...)`
+    static func clearSky(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.clearSky, compatibleWith: traitCollection)
     }
     #endif
 
@@ -572,6 +607,41 @@ struct R: Rswift.Validatable {
     }
     #endif
 
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "lightRain", bundle: ..., traitCollection: ...)`
+    static func lightRain(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.lightRain, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "lightRain2", bundle: ..., traitCollection: ...)`
+    static func lightRain2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.lightRain2, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "rain", bundle: ..., traitCollection: ...)`
+    static func rain(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.rain, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "rain2", bundle: ..., traitCollection: ...)`
+    static func rain2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.rain2, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "thunderstorm", bundle: ..., traitCollection: ...)`
+    static func thunderstorm(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.thunderstorm, compatibleWith: traitCollection)
+    }
+    #endif
+
     fileprivate init() {}
   }
 
@@ -608,8 +678,8 @@ struct R: Rswift.Validatable {
 
   /// This `R.nib` struct is generated, and contains static references to 13 nibs.
   struct nib {
-    /// Nib `AddNewCityCVCell`.
-    static let addNewCityCVCell = _R.nib._AddNewCityCVCell()
+    /// Nib `AddNewCityTVCell`.
+    static let addNewCityTVCell = _R.nib._AddNewCityTVCell()
     /// Nib `CityCVCell`.
     static let cityCVCell = _R.nib._CityCVCell()
     /// Nib `EditingCityCVCell`.
@@ -636,10 +706,10 @@ struct R: Rswift.Validatable {
     static let weeklyWeatherView = _R.nib._WeeklyWeatherView()
 
     #if os(iOS) || os(tvOS)
-    /// `UINib(name: "AddNewCityCVCell", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.addNewCityCVCell) instead")
-    static func addNewCityCVCell(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.addNewCityCVCell)
+    /// `UINib(name: "AddNewCityTVCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.addNewCityTVCell) instead")
+    static func addNewCityTVCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.addNewCityTVCell)
     }
     #endif
 
@@ -739,8 +809,8 @@ struct R: Rswift.Validatable {
     }
     #endif
 
-    static func addNewCityCVCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> AddNewCityCVCell? {
-      return R.nib.addNewCityCVCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? AddNewCityCVCell
+    static func addNewCityTVCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> AddNewCityTVCell? {
+      return R.nib.addNewCityTVCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? AddNewCityTVCell
     }
 
     static func cityCVCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> CityCVCell? {
@@ -796,8 +866,8 @@ struct R: Rswift.Validatable {
 
   /// This `R.reuseIdentifier` struct is generated, and contains static references to 10 reuse identifiers.
   struct reuseIdentifier {
-    /// Reuse identifier `AddNewCityCVCell`.
-    static let addNewCityCVCell: Rswift.ReuseIdentifier<AddNewCityCVCell> = Rswift.ReuseIdentifier(identifier: "AddNewCityCVCell")
+    /// Reuse identifier `AddNewCityTVCell`.
+    static let addNewCityTVCell: Rswift.ReuseIdentifier<AddNewCityTVCell> = Rswift.ReuseIdentifier(identifier: "AddNewCityTVCell")
     /// Reuse identifier `CityCVCell`.
     static let cityCVCell: Rswift.ReuseIdentifier<CityCVCell> = Rswift.ReuseIdentifier(identifier: "CityCVCell")
     /// Reuse identifier `EditingCityCVCell`.
@@ -855,15 +925,15 @@ struct _R: Rswift.Validatable {
       try _WeeklyWeatherView.validate()
     }
 
-    struct _AddNewCityCVCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
-      typealias ReusableType = AddNewCityCVCell
+    struct _AddNewCityTVCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+      typealias ReusableType = AddNewCityTVCell
 
       let bundle = R.hostingBundle
-      let identifier = "AddNewCityCVCell"
-      let name = "AddNewCityCVCell"
+      let identifier = "AddNewCityTVCell"
+      let name = "AddNewCityTVCell"
 
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> AddNewCityCVCell? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? AddNewCityCVCell
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> AddNewCityTVCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? AddNewCityTVCell
       }
 
       fileprivate init() {}
@@ -1126,7 +1196,12 @@ struct _R: Rswift.Validatable {
       typealias InitialController = UIKit.UIViewController
 
       let bundle = R.hostingBundle
+      let customLaunchScreenVC = StoryboardViewControllerResource<CustomLaunchScreenVC>(identifier: "CustomLaunchScreenVC")
       let name = "Main"
+
+      func customLaunchScreenVC(_: Void = ()) -> CustomLaunchScreenVC? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: customLaunchScreenVC)
+      }
 
       static func validate() throws {
         if UIKit.UIImage(named: "Screen Shot 2020-08-03 at 14.54.25", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Screen Shot 2020-08-03 at 14.54.25' is used in storyboard 'Main', but couldn't be loaded.") }
@@ -1136,6 +1211,7 @@ struct _R: Rswift.Validatable {
           if UIKit.UIColor(named: "purplyBlue", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'purplyBlue' is used in storyboard 'Main', but couldn't be loaded.") }
           if UIKit.UIColor(named: "slate", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'slate' is used in storyboard 'Main', but couldn't be loaded.") }
         }
+        if _R.storyboard.main().customLaunchScreenVC() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'customLaunchScreenVC' could not be loaded from storyboard 'Main' as 'CustomLaunchScreenVC'.") }
       }
 
       fileprivate init() {}

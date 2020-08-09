@@ -121,6 +121,12 @@
                     <constraint firstAttribute="trailing" secondItem="cyB-VM-JvD" secondAttribute="trailing" id="i2u-6t-Ycm"/>
                 </constraints>
             </collectionViewCellContentView>
+            <connections>
+                <outlet property="dateLBL" destination="FHJ-Ek-y2l" id="goh-lo-DYV"/>
+                <outlet property="imageView" destination="wPC-Y7-leN" id="x56-Af-Bq4"/>
+                <outlet property="nameLBL" destination="8pc-fi-lCg" id="qZd-im-kzG"/>
+                <outlet property="tempLBL" destination="N4T-GW-h8s" id="IF4-g8-gMV"/>
+            </connections>
             <point key="canvasLocation" x="131.8840579710145" y="138.61607142857142"/>
         </collectionViewCell>
     </objects>

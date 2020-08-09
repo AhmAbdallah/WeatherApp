@@ -17,11 +17,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //IQKeyboardManager
     IQKeyboardManager.shared.enable = true
     if #available(iOS 13.0, *) { } else {
+      checkTheView()
+    }
+    return true
+  }
+}
+extension AppDelegate {
+  func checkTheView() {
+    if let citiesArray = WeatherAppSessionManager.shared.citiesArray, citiesArray.count > 0 {
       let tabBar = MainTabBarC()
       window = UIWindow(frame: UIScreen.main.bounds)
       window?.rootViewController = tabBar
       window?.makeKeyAndVisible()
+    } else {
+      let addNewCityVM = AddNewCityVM()
+      let addNewCityVC = AddNewCityVC(addNewCityVM: addNewCityVM)
+      addNewCityVC.isAddingMode = false
+      let addNewCityNavigationController = UINavigationController(rootViewController: addNewCityVC)
+      addNewCityNavigationController.modalPresentationStyle = .fullScreen
+      window = UIWindow(frame: UIScreen.main.bounds)
+      window?.rootViewController = addNewCityNavigationController
+      window?.makeKeyAndVisible()
     }
-    return true
   }
 }

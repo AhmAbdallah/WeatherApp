@@ -10,4 +10,9 @@ import UIKit
 
 class CityCVCell: UICollectionViewCell {
   static let identifier = "CityCVCell"
+  @IBOutlet weak var imageView: UIImageView!
+  @IBOutlet weak var nameLBL: UILabel!
+  @IBOutlet weak var dateLBL: UILabel!
+  @IBOutlet weak var tempLBL: UILabel!
+  
 }

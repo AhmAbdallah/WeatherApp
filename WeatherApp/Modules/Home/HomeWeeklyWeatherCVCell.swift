@@ -11,11 +11,17 @@ import UIKit
 class HomeWeeklyWeatherCVCell: UICollectionViewCell {
   static let identifier = "HomeWeeklyWeatherCVCell"
   @IBOutlet weak var stackView: UIStackView!
-  func updateUI() {
-    self.stackView.arrangedSubviews.forEach({ $0.removeFromSuperview() })
-    for index in 0...6 {
-      if let view = WeeklyWeatherView.instanceFromNib() as? WeeklyWeatherView {
-        self.stackView.addArrangedSubview(view)
+  var data: [WeeklyData]? {
+    didSet {
+      self.stackView.arrangedSubviews.forEach({ $0.removeFromSuperview() })
+      for weeklyData in data! {
+        if let view = WeeklyWeatherView.instanceFromNib() as? WeeklyWeatherView {
+          self.stackView.addArrangedSubview(view)
+          view.dayLBL.text = weeklyData.day
+          view.imageView.image = UIImage(named: weeklyData.image)
+          view.maxLBL.text = "\(weeklyData.maxDegree ?? 0)°"
+          view.minLBL.text = "\(weeklyData.minDegree ?? 0)°"
+        }
       }
     }
   }

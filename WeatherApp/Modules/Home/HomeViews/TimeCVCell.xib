@@ -93,6 +93,7 @@
                 </constraints>
             </collectionViewCellContentView>
             <connections>
+                <outlet property="cityView" destination="Rfo-uL-HRu" id="ymI-O0-Zk2"/>
                 <outlet property="hourLBL" destination="ABe-7V-Cvk" id="Bgq-gY-S35"/>
                 <outlet property="imageView" destination="tzk-me-oq4" id="KtE-TV-XwO"/>
             </connections>

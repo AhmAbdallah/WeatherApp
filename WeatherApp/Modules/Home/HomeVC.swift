@@ -8,11 +8,12 @@
 
 import UIKit
 import Lottie
-
+//getting hourly and daily weather data from openweathermap requires paid subscription.
 class HomeVC: UIViewController {
   var homeVM: HomeVM?
   private var homeCollectionView: UICollectionView!
   let animationView = AnimationView()
+  var homeCustomCells: HomeCustomCells?
   lazy var refreshcontrol: UIRefreshControl = {
     let refreshcontrol = UIRefreshControl()
     refreshcontrol.addTarget(self, action: #selector(self.handleRefresh(_:)), for: UIControl.Event.valueChanged)
@@ -29,6 +30,7 @@ class HomeVC: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupViewUI()
+    homeCustomCells = HomeCustomCells(homeVC: self, homeVM: homeVM)
   }
   override func viewWillAppear(_ animated: Bool) {
     setupNavigationController()
@@ -71,8 +73,6 @@ extension HomeVC {
     homeCollectionView!.backgroundColor = .appBackgroundColor
     homeCollectionView.showsVerticalScrollIndicator = false
     homeCollectionView .addSubview(refreshcontrol)
-    homeCollectionView.delegate = self
-    homeCollectionView.dataSource = self
   }
 }
 
@@ -97,33 +97,15 @@ extension HomeVC: UICollectionViewDataSource {
     let section = indexPath.section
     switch section {
     case 0:
-      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCitiesCVCell.identifier,
-                                                          for: indexPath) as? HomeCitiesCVCell else {
-                                                            fatalError("Unexpected Index Path")}
-      cell.setupViewUI()
-      return cell
+      return homeCustomCells!.getHomeCitiesCVCell(collectionView: collectionView, indexPath: indexPath)
     case 1:
-      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeGeneralCVCell.identifier,
-                                                          for: indexPath) as? HomeGeneralCVCell else {
-                                                            fatalError("Unexpected Index Path")}
-      return cell
+      return homeCustomCells!.getHomeGeneralCVCell(collectionView: collectionView, indexPath: indexPath)
     case 2:
-      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeTimeCVCell.identifier,
-                                                          for: indexPath) as? HomeTimeCVCell else {
-                                                            fatalError("Unexpected Index Path")}
-      cell.setupViewUI()
-      return cell
+      return homeCustomCells!.getHomeTimeCVCell(collectionView: collectionView, indexPath: indexPath)
     case 3:
-      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDailyWeatherCVCell.identifier,
-                                                          for: indexPath) as? HomeDailyWeatherCVCell else {
-                                                            fatalError("Unexpected Index Path")}
-      return cell
+      return homeCustomCells!.getHomeDailyWeatherCVCell(collectionView: collectionView, indexPath: indexPath)
     case 4:
-    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWeeklyWeatherCVCell.identifier,
-                                                        for: indexPath) as? HomeWeeklyWeatherCVCell else {
-                                                          fatalError("Unexpected Index Path")}
-    cell.updateUI()
-    return cell
+      return homeCustomCells!.getHomeWeeklyWeatherCVCell(collectionView: collectionView, indexPath: indexPath)
     default:
       return UICollectionViewCell()
     }
@@ -134,7 +116,6 @@ extension HomeVC: UICollectionViewDataSource {
 extension HomeVC: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     let section = indexPath.section
-    let row = indexPath.row
     switch section {
     case 0:
       return CGSize(width: view.frame.size.width, height: 73)
@@ -145,7 +126,7 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
     case 3:
       return CGSize(width: view.frame.size.width, height: 216)
     case 4:
-    return CGSize(width: view.frame.size.width, height: 424)
+      return CGSize(width: view.frame.size.width, height: 424)
     default:
       return CGSize(width: view.frame.size.width, height: 0)
     }
@@ -176,10 +157,16 @@ extension HomeVC: ViewControllerDelegate {
   }
 }
 
-//extension HomeVC: ProductReturningVMDelegate {
-//  func updateUI() {
-//    productReturningCV.delegate = self
-//    productReturningCV.dataSource = self
-//    productReturningCV.reloadData()
-//  }
-//}
+extension HomeVC: HomeVMDelegate {
+  func updateUI() {
+    homeCollectionView.delegate = self
+    homeCollectionView.dataSource = self
+    homeCollectionView.reloadData()
+  }
+}
+
+extension HomeVC: HomeCitiesCVCellDelegate {
+  func getDataFor(cityID: Int) {
+    homeVM?.getWeatherDataFor(cityId: "\(cityID)")
+  }
+}

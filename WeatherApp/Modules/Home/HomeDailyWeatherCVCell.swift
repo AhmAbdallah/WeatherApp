@@ -10,8 +10,17 @@ import UIKit
 
 class HomeDailyWeatherCVCell: UICollectionViewCell {
     static let identifier = "HomeDailyWeatherCVCell"
-  @IBOutlet weak var windLBL: UILabel! //mhs/s
-  @IBOutlet weak var humidityLBL: UILabel! //%45
-  @IBOutlet weak var visibilityLBL: UILabel! //Km
+  @IBOutlet weak var windLBL: UILabel!
+  @IBOutlet weak var humidityLBL: UILabel!
+  @IBOutlet weak var visibilityLBL: UILabel!
   @IBOutlet weak var cloudsLBL: UILabel!
+  var cityWeatherModel: CityWeatherModel? {
+    didSet {
+      windLBL.text = String(format: "%.2f", cityWeatherModel?.wind.speed ?? 0) + " mhs/s"
+      humidityLBL.text = "%" + String(format: "%i", cityWeatherModel?.mainWeather.humidity ?? 0)
+      let visibility = cityWeatherModel!.visibility / 1000
+      visibilityLBL.text = String(format: "%i", visibility) + " km"
+      cloudsLBL.text = String(format: "%i", cityWeatherModel?.clouds.all ?? 0)
+    }
+  }
 }

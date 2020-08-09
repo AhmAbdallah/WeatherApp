@@ -93,6 +93,12 @@
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="dayLBL" destination="r1B-Z2-db5" id="Ezm-mb-hZG"/>
+                <outlet property="imageView" destination="Uab-Yd-Wji" id="lQS-jm-j6p"/>
+                <outlet property="maxLBL" destination="XG6-kR-jWk" id="XNt-if-vFu"/>
+                <outlet property="minLBL" destination="FvO-yd-dfF" id="yjd-HT-OER"/>
+            </connections>
             <point key="canvasLocation" x="-217.39130434782609" y="446.31696428571428"/>
         </view>
     </objects>

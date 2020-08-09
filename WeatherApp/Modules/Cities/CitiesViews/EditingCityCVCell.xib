@@ -76,6 +76,12 @@
                                             <constraint firstAttribute="height" constant="24" id="ycA-2L-IhX"/>
                                         </constraints>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYW-xi-867">
+                                        <rect key="frame" x="-3" y="17" width="46" height="30"/>
+                                        <connections>
+                                            <action selector="tapDeletingBTN:" destination="h2q-cS-w1I" eventType="touchUpInside" id="Ynp-X1-wlK"/>
+                                        </connections>
+                                    </button>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconEditTheCity" translatesAutoresizingMaskIntoConstraints="NO" id="asI-tB-Uqu">
                                         <rect key="frame" x="334" y="20" width="24" height="24"/>
                                         <constraints>
@@ -83,24 +89,38 @@
                                             <constraint firstAttribute="width" constant="24" id="w7i-4a-pio"/>
                                         </constraints>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9u3-Dc-dhs">
+                                        <rect key="frame" x="331" y="17" width="30" height="30"/>
+                                        <connections>
+                                            <action selector="tapEditingBTN:" destination="h2q-cS-w1I" eventType="touchUpInside" id="pHZ-kj-kx0"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="9u3-Dc-dhs" firstAttribute="centerX" secondItem="asI-tB-Uqu" secondAttribute="centerX" id="16s-mX-dVi"/>
                                     <constraint firstItem="ybq-Ca-5NR" firstAttribute="top" secondItem="4ab-P0-rd7" secondAttribute="top" constant="14" id="5F8-0C-dhM"/>
                                     <constraint firstItem="y0n-Ty-kfS" firstAttribute="centerY" secondItem="4ab-P0-rd7" secondAttribute="centerY" id="6k6-Y4-pfQ"/>
                                     <constraint firstItem="ybq-Ca-5NR" firstAttribute="leading" secondItem="vMm-0p-HxC" secondAttribute="trailing" constant="35" id="BeM-ax-gqE"/>
                                     <constraint firstItem="ru6-RK-zpG" firstAttribute="top" secondItem="4ab-P0-rd7" secondAttribute="top" constant="8" id="DPW-mc-RFv"/>
                                     <constraint firstItem="2eD-sI-NaO" firstAttribute="top" secondItem="ybq-Ca-5NR" secondAttribute="bottom" constant="4" id="DQn-fe-hgu"/>
                                     <constraint firstItem="ru6-RK-zpG" firstAttribute="leading" secondItem="ybq-Ca-5NR" secondAttribute="trailing" constant="8" id="Fmf-GA-N3U"/>
+                                    <constraint firstItem="HYW-xi-867" firstAttribute="height" secondItem="y0n-Ty-kfS" secondAttribute="height" multiplier="1.25" id="GqS-Qm-9YE"/>
                                     <constraint firstAttribute="bottom" secondItem="2eD-sI-NaO" secondAttribute="bottom" constant="10" id="Hc1-Al-ssG"/>
+                                    <constraint firstItem="9u3-Dc-dhs" firstAttribute="centerY" secondItem="asI-tB-Uqu" secondAttribute="centerY" id="KnV-gb-jkN"/>
                                     <constraint firstItem="y0n-Ty-kfS" firstAttribute="leading" secondItem="4ab-P0-rd7" secondAttribute="leading" constant="8" id="OD5-KW-MNb"/>
                                     <constraint firstItem="vMm-0p-HxC" firstAttribute="centerY" secondItem="4ab-P0-rd7" secondAttribute="centerY" id="Pfo-5e-bi8"/>
                                     <constraint firstAttribute="bottom" secondItem="ru6-RK-zpG" secondAttribute="bottom" constant="8" id="QnH-ne-Y9V"/>
                                     <constraint firstItem="2eD-sI-NaO" firstAttribute="leading" secondItem="vMm-0p-HxC" secondAttribute="trailing" constant="36" id="UAK-Yh-Fs1"/>
                                     <constraint firstAttribute="trailing" secondItem="asI-tB-Uqu" secondAttribute="trailing" constant="16" id="Wwk-TV-ZI2"/>
                                     <constraint firstItem="vMm-0p-HxC" firstAttribute="leading" secondItem="y0n-Ty-kfS" secondAttribute="trailing" constant="12" id="Xbm-ro-Qw3"/>
+                                    <constraint firstItem="HYW-xi-867" firstAttribute="centerX" secondItem="y0n-Ty-kfS" secondAttribute="centerX" id="aM9-j5-AHq"/>
+                                    <constraint firstItem="HYW-xi-867" firstAttribute="centerY" secondItem="y0n-Ty-kfS" secondAttribute="centerY" id="kzA-DU-zpP"/>
                                     <constraint firstItem="asI-tB-Uqu" firstAttribute="centerY" secondItem="4ab-P0-rd7" secondAttribute="centerY" id="o1p-sy-iCv"/>
+                                    <constraint firstItem="9u3-Dc-dhs" firstAttribute="height" secondItem="asI-tB-Uqu" secondAttribute="height" multiplier="1.25" id="pLc-Zr-u3X"/>
                                     <constraint firstItem="ru6-RK-zpG" firstAttribute="leading" secondItem="2eD-sI-NaO" secondAttribute="trailing" constant="8" id="qgP-4L-2w7"/>
+                                    <constraint firstItem="9u3-Dc-dhs" firstAttribute="width" secondItem="asI-tB-Uqu" secondAttribute="width" multiplier="1.25" id="r5h-A0-sgr"/>
+                                    <constraint firstItem="HYW-xi-867" firstAttribute="width" secondItem="y0n-Ty-kfS" secondAttribute="width" multiplier="1.91667" id="tcA-1q-eFC"/>
                                     <constraint firstItem="asI-tB-Uqu" firstAttribute="leading" secondItem="ru6-RK-zpG" secondAttribute="trailing" constant="19" id="vg2-pB-hr3"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -138,6 +158,12 @@
                     <constraint firstItem="egO-EJ-Dqc" firstAttribute="leading" secondItem="4Gy-gw-0Rz" secondAttribute="leading" id="xzi-zp-qAW"/>
                 </constraints>
             </collectionViewCellContentView>
+            <connections>
+                <outlet property="dateLBL" destination="2eD-sI-NaO" id="APr-yk-MYX"/>
+                <outlet property="imageView" destination="vMm-0p-HxC" id="BXv-mm-LtR"/>
+                <outlet property="nameLBL" destination="ybq-Ca-5NR" id="rmV-5r-yVi"/>
+                <outlet property="tempLBL" destination="ru6-RK-zpG" id="j7g-NZ-NnG"/>
+            </connections>
             <point key="canvasLocation" x="131.8840579710145" y="144.64285714285714"/>
         </collectionViewCell>
     </objects>

@@ -12,9 +12,10 @@ import Lottie
 class AddNewCityVC: UIViewController {
   var addNewCityVM: AddNewCityVM?
   let animationView = AnimationView()
-  let searchBar = UISearchBar()
+  var isAddingMode = false
+  var searchCustomView: SearchCustomView?
   private var lastContentOffset: CGFloat = 0
-  var addNewCityCollectionView: UICollectionView!
+  var addNewCityTableView: UITableView!
   lazy var refreshcontrol: UIRefreshControl = {
     let refreshcontrol = UIRefreshControl()
     refreshcontrol.addTarget(self, action: #selector(self.handleRefresh(_:)), for: UIControl.Event.valueChanged)
@@ -36,6 +37,9 @@ class AddNewCityVC: UIViewController {
     super.viewWillAppear(animated)
     navigationController?.isNavigationBarHidden = false
     setupNavigationController()
+    if !isAddingMode {
+      showDodoToast(message: "Lütfen en az 3 ekler mısınız", dodoType: .info)
+    }
   }
 }
 
@@ -44,93 +48,79 @@ extension AddNewCityVC {
   fileprivate func setupNavigationController() {
     navigationController?.navigationBar.titleTextAttributes = titleTextAttributes()
     navigationController?.navigationBar.barTintColor = .white
-    //searchBar.backgroundColor = UIColor(red: 239/255, green: 240/255, blue: 241/255, alpha: 1.00)
-    searchBar.delegate = self
-    searchBar.showsCancelButton = false
-    searchBar.sizeToFit()
-    self.navigationController?.navigationBar.topItem?.titleView = searchBar
-    setupDismissBackBTN()
+    navigationController?.navigationBar.titleTextAttributes = titleTextAttributes()
+    navigationController?.navigationBar.barTintColor = .white
+    if let view = SearchCustomView.instanceFromNib() as? SearchCustomView {
+      view.frame.size.width = navigationController!.navigationBar.frame.size.width
+      view.frame.size.height = navigationController!.navigationBar.frame.size.height
+      view.isAddingMode = isAddingMode
+      view.searchCustomViewDelegate = self
+      searchCustomView = view
+      navigationController?.navigationBar.addSubview(view)
+    }
   }
   @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
     refreshcontrol.endRefreshing()
   }
   private func setupCollectionView() {
-    let flowLayout = UICollectionViewFlowLayout()
-    addNewCityCollectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: flowLayout)
-    flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    flowLayout.scrollDirection = .vertical
-    flowLayout.minimumInteritemSpacing = 0.0
-    flowLayout.minimumLineSpacing = 0.0
-    addNewCityCollectionView.setCollectionViewLayout(flowLayout, animated: false)
-    view.addSubview(addNewCityCollectionView)
-    addNewCityCollectionView.register(UINib(nibName: AddNewCityCVCell.identifier, bundle: nil), forCellWithReuseIdentifier: AddNewCityCVCell.identifier)
-    addNewCityCollectionView.translatesAutoresizingMaskIntoConstraints = false
-    addNewCityCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-    addNewCityCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
-    addNewCityCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
-    addNewCityCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
-    addNewCityCollectionView.backgroundColor = .appBackgroundColor
-    view.backgroundColor = .white
-    addNewCityCollectionView.showsVerticalScrollIndicator = false
-    addNewCityCollectionView.addSubview(refreshcontrol)
-    addNewCityCollectionView.dataSource = self
-    addNewCityCollectionView.delegate = self
-  }
-  @objc func dismissNotificationsV() {
-    self.dismiss(animated: true, completion: nil)
+    addNewCityTableView = UITableView(frame: self.view.frame)
+    view.addSubview(addNewCityTableView)
+    
+    addNewCityTableView.register(UINib(nibName: AddNewCityTVCell.identifier, bundle: nil), forCellReuseIdentifier: AddNewCityTVCell.identifier)
+    
+    addNewCityTableView.translatesAutoresizingMaskIntoConstraints = false
+    addNewCityTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
+    addNewCityTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+    addNewCityTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
+    addNewCityTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
+    addNewCityTableView.backgroundColor = .appBackgroundColor
+    addNewCityTableView.tintColor = .slate
+    addNewCityTableView.sectionIndexTrackingBackgroundColor = UIColor.clear
+    addNewCityTableView.sectionIndexBackgroundColor = UIColor.clear
+    view.backgroundColor = .appBackgroundColor
+    addNewCityTableView.showsVerticalScrollIndicator = false
+    addNewCityTableView.separatorColor = .none
+    addNewCityTableView.addSubview(refreshcontrol)
+    addNewCityTableView.dataSource = self
   }
 }
 
-extension AddNewCityVC: UICollectionViewDelegate {
-  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    let row =  indexPath.row
-    //    let product = offersVM?.getProductFor(index: row)
-    //    if let productId = product?.pRODUCTID {
-    //      let productDetailsVM = ProductDetailsVM()
-    //      let productDetailsVC = ProductDetailsVC(productDetailsVM: productDetailsVM)
-    //      productDetailsVM.productDetailsVMDelegate = productDetailsVC
-    //      productDetailsVM.viewControllerDelegate = productDetailsVC
-    //      productDetailsVM.productId = "\(productId)"
-    //      navigationController?.pushViewController(productDetailsVC, animated: true)
-    //    }
+extension AddNewCityVC: UITableViewDataSource {
+  func numberOfSections(in tableView: UITableView) -> Int {
+    return addNewCityVM?.getSectionCount() ?? 0
   }
-}
-
-extension AddNewCityVC: UICollectionViewDataSource {
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 10
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return addNewCityVM?.getRowCountFor(section: section) ?? 0
   }
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let row = indexPath.row
-    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddNewCityCVCell.identifier,
-                                                        for: indexPath) as? AddNewCityCVCell else {
-                                                          fatalError("Unexpected Index Path")}
+    let section = indexPath.section
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: AddNewCityTVCell.identifier,
+                                                   for: indexPath) as? AddNewCityTVCell else {
+                                                    fatalError("Unexpected Index Path")}
+    cell.city = addNewCityVM?.getCityFor(section: section, row: row)
+    cell.addNewCityTVCellDelegate = self
     return cell
   }
-}
-
-// MARK: - UICollectionViewDelegateFlowLayout
-extension AddNewCityVC: UICollectionViewDelegateFlowLayout {
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: view.frame.size.width, height: 49)
+  
+  func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    return addNewCityVM?.getTitleFor(section: section)
   }
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-    return 0.0
+  
+  func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+    return addNewCityVM?.getSectionIndexTitles()
   }
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-    return 0.0
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    //may we can handle it, if the customer selected the cell
   }
 }
 
 extension AddNewCityVC: UIScrollViewDelegate {
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
     if lastContentOffset > scrollView.contentOffset.y && lastContentOffset < scrollView.contentSize.height - scrollView.frame.height {
-      print("move up")
-      //        navigationController?.hidesBarsOnSwipe = false
-      //        navigationController?.isNavigationBarHidden = false
       navigationController?.setNavigationBarHidden(false, animated: true)
     } else if lastContentOffset < scrollView.contentOffset.y && scrollView.contentOffset.y > 0 {
-      print("move down")
       navigationController?.setNavigationBarHidden(true, animated: true)
     }
     lastContentOffset = scrollView.contentOffset.y
@@ -176,5 +166,41 @@ extension AddNewCityVC: UISearchBarDelegate {
     print("searchText \(searchBar.text!)")
     searchBar.endEditing(true)
     //searchVM?.getSearchData(keyWord: searchBar.text!)
+  }
+}
+
+extension AddNewCityVC: AddNewCityTVCellDelegate {
+  func addCityWith(city: City?) {
+    if let citiesArray = WeatherAppSessionManager.shared.citiesArray, citiesArray.count > 0 {
+      if !citiesArray.contains(city!) {
+        var array: [City] = citiesArray
+        array.append(city!)
+        WeatherAppSessionManager.shared.citiesArray = array
+        if !isAddingMode {
+          if array.count > 2 {
+            let tabBar = MainTabBarC()
+            tabBar.modalPresentationStyle = .fullScreen
+            navigationController?.present(tabBar, animated: true, completion: nil)
+          }
+        }
+        showDodoToast(message: "şehir ekledi", dodoType: .info)
+      } else {
+        showDodoToast(message: "başka bir şehir ekler misiniz", dodoType: .error)
+      }
+    } else {
+      let array: [City] = [city!]
+      WeatherAppSessionManager.shared.citiesArray = array
+      showDodoToast(message: "şehir ekledi", dodoType: .info)
+    }
+  }
+}
+
+extension AddNewCityVC: SearchCustomViewDelegate {
+  func updateTheVCWith(text: String) {
+    //Handle search process
+  }
+  func dismissAddNewCityVC() {
+    navigationController?.navigationBar.willRemoveSubview(searchCustomView!)
+    dismiss(animated: true, completion: nil)
   }
 }

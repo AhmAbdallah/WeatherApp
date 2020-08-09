@@ -15,6 +15,6 @@ extension UIColor {
   static let slate = UIColor(red: 76/255, green: 82/255, blue: 100/255, alpha: 1)
   static let veryLightPink = UIColor(red: 225/255, green: 225/255, blue: 225/255, alpha: 1)
   static let infoColor = UIColor(red: 20/255, green: 78/255, blue: 140/255, alpha: 1)
-  static let warningColor = UIColor(red: 173/255, green: 166/255, blue: 18/255, alpha: 1)
+  static let warningColor = UIColor(red: 173/255, green: 166/255, blue: 35/255, alpha: 1)
   static let appBackgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
 }
