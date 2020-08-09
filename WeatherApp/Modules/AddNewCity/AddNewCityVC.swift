@@ -16,23 +16,28 @@ class AddNewCityVC: UIViewController {
   var searchCustomView: SearchCustomView?
   private var lastContentOffset: CGFloat = 0
   var addNewCityTableView: UITableView!
+  
   lazy var refreshcontrol: UIRefreshControl = {
     let refreshcontrol = UIRefreshControl()
     refreshcontrol.addTarget(self, action: #selector(self.handleRefresh(_:)), for: UIControl.Event.valueChanged)
     refreshcontrol.tintColor = UIColor.purplyBlue
     return refreshcontrol
   }()
+  
   init(addNewCityVM: AddNewCityVM?) {
     self.addNewCityVM = addNewCityVM
     super.init(nibName: nil, bundle: nil)
   }
+  
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     setupCollectionView()
   }
+  
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     navigationController?.isNavigationBarHidden = false
@@ -59,9 +64,11 @@ extension AddNewCityVC {
       navigationController?.navigationBar.addSubview(view)
     }
   }
+  
   @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
     refreshcontrol.endRefreshing()
   }
+  
   private func setupCollectionView() {
     addNewCityTableView = UITableView(frame: self.view.frame)
     view.addSubview(addNewCityTableView)
@@ -89,9 +96,11 @@ extension AddNewCityVC: UITableViewDataSource {
   func numberOfSections(in tableView: UITableView) -> Int {
     return addNewCityVM?.getSectionCount() ?? 0
   }
+  
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return addNewCityVM?.getRowCountFor(section: section) ?? 0
   }
+  
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let row = indexPath.row
     let section = indexPath.section
@@ -132,66 +141,36 @@ extension AddNewCityVC: ViewControllerDelegate {
   func vMShowProgressLoading() {
     showLottieLoader(animationView: animationView)
   }
+  
   func vMHideProgressLoading() {
     hideLottieLoader(animationView: animationView)
   }
+  
   func returnErrorWith(_ message: String) {
     hideLottieLoader(animationView: animationView)
     showDodoToast(message: message, dodoType: .error)
-    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-      self.dismiss(animated: true)
-    }
   }
+  
   func returnSuccessWith(_ message: String) {
     hideLottieLoader(animationView: animationView)
     showDodoToast(message: message, dodoType: .success)
   }
 }
 
-//extension AddNewCityVC: SearchVMDelegate {
-//  func updateUI() {
-//    addNewCityCollectionView.dataSource = self
-//    addNewCityCollectionView.delegate = self
-//    addNewCityCollectionView.reloadData()
-//  }
-//}
-
-extension AddNewCityVC: UISearchBarDelegate {
-  func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-    searchBar.text = ""
-    searchBar.endEditing(true)
-    searchBar.showsCancelButton = false
+extension AddNewCityVC: AddNewCityVMDelegate {
+  func openHomePage() {
+    let tabBar = MainTabBarC()
+    tabBar.modalPresentationStyle = .fullScreen
+    navigationController?.present(tabBar, animated: true, completion: nil)
   }
-  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-    print("searchText \(searchBar.text!)")
-    searchBar.endEditing(true)
-    //searchVM?.getSearchData(keyWord: searchBar.text!)
+  
+  func showInfo(message: String) {
+    showDodoToast(message: message, dodoType: .info)
   }
 }
-
 extension AddNewCityVC: AddNewCityTVCellDelegate {
   func addCityWith(city: City?) {
-    if let citiesArray = WeatherAppSessionManager.shared.citiesArray, citiesArray.count > 0 {
-      if !citiesArray.contains(city!) {
-        var array: [City] = citiesArray
-        array.append(city!)
-        WeatherAppSessionManager.shared.citiesArray = array
-        if !isAddingMode {
-          if array.count > 2 {
-            let tabBar = MainTabBarC()
-            tabBar.modalPresentationStyle = .fullScreen
-            navigationController?.present(tabBar, animated: true, completion: nil)
-          }
-        }
-        showDodoToast(message: "şehir ekledi", dodoType: .info)
-      } else {
-        showDodoToast(message: "başka bir şehir ekler misiniz", dodoType: .error)
-      }
-    } else {
-      let array: [City] = [city!]
-      WeatherAppSessionManager.shared.citiesArray = array
-      showDodoToast(message: "şehir ekledi", dodoType: .info)
-    }
+    addNewCityVM?.addCityWith(city: city, isAddingMode: isAddingMode)
   }
 }
 
@@ -199,6 +178,7 @@ extension AddNewCityVC: SearchCustomViewDelegate {
   func updateTheVCWith(text: String) {
     //Handle search process
   }
+  
   func dismissAddNewCityVC() {
     navigationController?.navigationBar.willRemoveSubview(searchCustomView!)
     dismiss(animated: true, completion: nil)

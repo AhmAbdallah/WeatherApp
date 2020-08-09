@@ -34,6 +34,8 @@ extension CitiesCoordinator {
   func openAddNewCityVC(isAddingMode: Bool) {
     let addNewCityVM = AddNewCityVM()
     let addNewCityVC = AddNewCityVC(addNewCityVM: addNewCityVM)
+    addNewCityVM.addNewCityVMDelegate = addNewCityVC
+    addNewCityVM.viewControllerDelegate = addNewCityVC
     addNewCityVC.isAddingMode = isAddingMode
     let addNewCityNavigationController = UINavigationController(rootViewController: addNewCityVC)
     addNewCityNavigationController.modalPresentationStyle = .fullScreen

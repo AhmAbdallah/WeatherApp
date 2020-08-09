@@ -32,6 +32,8 @@ extension AppDelegate {
     } else {
       let addNewCityVM = AddNewCityVM()
       let addNewCityVC = AddNewCityVC(addNewCityVM: addNewCityVM)
+      addNewCityVM.addNewCityVMDelegate = addNewCityVC
+      addNewCityVM.viewControllerDelegate = addNewCityVC
       addNewCityVC.isAddingMode = false
       let addNewCityNavigationController = UINavigationController(rootViewController: addNewCityVC)
       addNewCityNavigationController.modalPresentationStyle = .fullScreen

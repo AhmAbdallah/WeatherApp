@@ -39,6 +39,7 @@ extension CitiesVM {
                                      "lang": "tr"]
     callWebServiceWith(param: paramArray)
   }
+  
   func callWebServiceWith(param: [String: Any]) {
     self.viewControllerDelegate?.vMShowProgressLoading()
     ServiceConnector.shared.connect(.getCitiesGroup(params: param), success: { (target, response, statusCode) in
@@ -79,18 +80,21 @@ extension CitiesVM {
     }
     return 0
   }
+  
   func getTitleFor(row: Int) -> String {
     if let title = citiesGroupModel?.list[row].name {
       return title
     }
     return ""
   }
+  
   func getListFor(row: Int) -> List? {
     if let city = citiesGroupModel?.list[row] {
       return city
     }
     return nil
   }
+  
   func deleteDataFor(row: Int) {
     var cities = WeatherAppSessionManager.shared.citiesArray
     cities?.remove(at: row)

@@ -10,12 +10,12 @@ import UIKit
 
 public class CBTabBarItem: UITabBarItem {
     @IBInspectable public var tintColor: UIColor?
-    @IBInspectable public var rightToLeft:Bool = false
+    @IBInspectable public var rightToLeft: Bool = false
 }
 
 public class CBTabBarButton: UIControl {
 
-    var rightToLeft:Bool = false
+    var rightToLeft: Bool = false
     private var _isSelected: Bool = false
     override public var isSelected: Bool {
         get {
@@ -102,7 +102,6 @@ public class CBTabBarButton: UIControl {
         return [csUnfoldedLblLeading, csUnfoldedBgTrailing]
     }
 
-
     private func configureSubviews() {
         tabImage.contentMode = .center
         tabImage.translatesAutoresizingMaskIntoConstraints = false
@@ -148,8 +147,8 @@ public class CBTabBarButton: UIControl {
     }
 
     private func fold(animationDuration duration: Double = 0.0) {
-        unfoldedConstraints.forEach{ $0.isActive = false }
-        foldedConstraints.forEach{ $0.isActive = true }
+        unfoldedConstraints.forEach { $0.isActive = false }
+        foldedConstraints.forEach { $0.isActive = true }
         UIView.animate(withDuration: duration) {
             self.tabBg.alpha = 0.0
         }
@@ -163,8 +162,8 @@ public class CBTabBarButton: UIControl {
     }
 
     private func unfold(animationDuration duration: Double = 0.0) {
-        foldedConstraints.forEach{ $0.isActive = false }
-        unfoldedConstraints.forEach{ $0.isActive = true }
+        foldedConstraints.forEach { $0.isActive = false }
+        unfoldedConstraints.forEach { $0.isActive = true }
         UIView.animate(withDuration: duration) {
             self.tabBg.alpha = 1.0
         }

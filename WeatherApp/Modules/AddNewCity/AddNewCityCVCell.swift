@@ -25,6 +25,7 @@ static let identifier = "AddNewCityTVCell"
       }
     }
   }
+  
   @IBAction func tapAddingCityBTN(_ sender: Any) {
     addNewCityTVCellDelegate?.addCityWith(city: city)
   }

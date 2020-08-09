@@ -17,7 +17,7 @@ open class BubbleTabBar: UITabBar {
         buttons.forEach { $0.setSelected(false) }
         return
       }
-      guard let index = items?.index(of: newValue),
+      guard let index = items?.firstIndex(of: newValue),
         index != NSNotFound else {
           return
       }
@@ -86,7 +86,7 @@ open class BubbleTabBar: UITabBar {
     super.setItems(items, animated: animated)
     reloadViews()
   }
-  private var spaceLayoutGuides:[UILayoutGuide] = []
+  private var spaceLayoutGuides: [UILayoutGuide] = []
   private func reloadViews() {
     subviews.filter { String(describing: type(of: $0)) == "UITabBarButton" }.forEach { $0.removeFromSuperview() }
     buttons.forEach { $0.removeFromSuperview() }
@@ -134,7 +134,7 @@ open class BubbleTabBar: UITabBar {
     return button
   }
   @objc private func btnPressed(sender: CBTabBarButton) {
-    guard let index = buttons.index(of: sender),
+    guard let index = buttons.firstIndex(of: sender),
       index != NSNotFound,
       let item = items?[index] else {
         return
