@@ -11,10 +11,6 @@ import Dodo
 import Lottie
 import SwiftyJSON
 
-protocol GenderDelegate: AnyObject {
-  func userGender(gender: String)
-}
-
 protocol ListDelegate: AnyObject {
   func openCartView()
   func openCompareView()
@@ -39,16 +35,6 @@ extension UIViewController {
   }
   @objc func popVC() {
     self.navigationController?.popViewController(animated: true)
-  }
-  func setupDismissBackBTN() {
-    navigationItem.leftBarButtonItem = createDismissBackBTN()
-  }
-  private func createDismissBackBTN() -> UIBarButtonItem {
-    let popBTN = UIBarButtonItem.init(image: R.image.iconBackBtn(), style: .plain, target: self, action: #selector(popDismissVC))
-    return popBTN
-  }
-  @objc func popDismissVC() {
-    self.dismissDetail()
   }
 }
 
@@ -149,29 +135,5 @@ extension String {
     let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
     let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
     return ceil(boundingBox.width)
-  }
-}
-
-extension UIViewController {
-  func presentDetail(_ viewControllerToPresent: UIViewController) {
-    self.view.window!.backgroundColor = .white
-    let transition = CATransition()
-    transition.duration = 0.25
-    transition.type = CATransitionType.push
-    transition.subtype = CATransitionSubtype.fromRight
-    self.view.window!.layer.add(transition, forKey: kCATransition)
-    
-    present(viewControllerToPresent, animated: false)
-  }
-  
-  func dismissDetail() {
-    self.view.window!.backgroundColor = .white
-    let transition = CATransition()
-    transition.duration = 0.25
-    transition.type = CATransitionType.push
-    transition.subtype = CATransitionSubtype.fromLeft
-    self.view.window!.layer.add(transition, forKey: kCATransition)
-    
-    dismiss(animated: false)
   }
 }

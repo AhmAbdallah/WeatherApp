@@ -70,6 +70,7 @@
 		8765BDE724DF6780003F3A7D /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765BDE624DF6780003F3A7D /* MainCoordinator.swift */; };
 		8787283224DF71990032C6C8 /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 8787283124DF71980032C6C8 /* cities.json */; };
 		8787283C24DFC60F0032C6C8 /* WeatherAppSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8787283B24DFC60F0032C6C8 /* WeatherAppSessionManager.swift */; };
+		8787283E24E045ED0032C6C8 /* CitiesGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8787283D24E045EC0032C6C8 /* CitiesGroupModel.swift */; };
 		878E76FB24DAA88D003E8099 /* BubbleTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878E76F724DAA88D003E8099 /* BubbleTabBar.swift */; };
 		878E76FC24DAA88D003E8099 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 878E76F824DAA88D003E8099 /* .gitkeep */; };
 		878E76FD24DAA88D003E8099 /* BubbleTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878E76F924DAA88D003E8099 /* BubbleTabBarController.swift */; };
@@ -177,6 +178,7 @@
 		8765BDE624DF6780003F3A7D /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		8787283124DF71980032C6C8 /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
 		8787283B24DFC60F0032C6C8 /* WeatherAppSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppSessionManager.swift; sourceTree = "<group>"; };
+		8787283D24E045EC0032C6C8 /* CitiesGroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesGroupModel.swift; sourceTree = "<group>"; };
 		878E76F724DAA88D003E8099 /* BubbleTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleTabBar.swift; sourceTree = "<group>"; };
 		878E76F824DAA88D003E8099 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		878E76F924DAA88D003E8099 /* BubbleTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleTabBarController.swift; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 				875465AD24DBF0DB0033FCB1 /* CityWeatherModel.swift */,
 				875465B524DC93CE0033FCB1 /* WeeklyModel.swift */,
 				875465B924DD2C900033FCB1 /* CitiesModel.swift */,
+				8787283D24E045EC0032C6C8 /* CitiesGroupModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -857,6 +860,7 @@
 				878E771024DAEB83003E8099 /* EditingCityCVCell.swift in Sources */,
 				875465AC24DBE67F0033FCB1 /* ServiceConnector.swift in Sources */,
 				8749023C24D8BF6A001CD94F /* HomeTimeCVCell.swift in Sources */,
+				8787283E24E045ED0032C6C8 /* CitiesGroupModel.swift in Sources */,
 				87020DF224D74E3A0012D16F /* Coordinator.swift in Sources */,
 				878E76FB24DAA88D003E8099 /* BubbleTabBar.swift in Sources */,
 				8749022A24D87269001CD94F /* HomeGeneralCVCell.swift in Sources */,

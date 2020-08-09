@@ -16,11 +16,12 @@ class HomeCitiesCVCell: UICollectionViewCell {
   var selectedIndex = 0
   weak var homeCitiesCVCellDelegate: HomeCitiesCVCellDelegate?
   @IBOutlet weak var citiesCollectionView: UICollectionView!
-  let citiesArray = WeatherAppSessionManager.shared.citiesArray
+  var citiesArray: [City]?
   func setupViewUI() {
     citiesCollectionView.register(UINib(nibName: HomeCityCVCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeCityCVCell.identifier)
     citiesCollectionView.delegate = self
     citiesCollectionView.dataSource = self
+    citiesCollectionView.reloadData()
   }
 }
 

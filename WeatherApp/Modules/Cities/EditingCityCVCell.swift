@@ -8,20 +8,33 @@
 
 import UIKit
 protocol EditingCityCVCellDelegate: AnyObject {
-  func tapDelete(indexPath: IndexPath)
-  func tapEdit(indexPath: IndexPath)}
+  func tapDelete(row: Int)
+  func tapEdit(row: Int)}
 class EditingCityCVCell: UICollectionViewCell {
   static let identifier = "EditingCityCVCell"
   weak var editingCityCVCellDelegate: EditingCityCVCellDelegate?
-  var indexPath: IndexPath?
+  var row: Int?
+  
   @IBOutlet weak var imageView: UIImageView!
-   @IBOutlet weak var nameLBL: UILabel!
-   @IBOutlet weak var dateLBL: UILabel!
-   @IBOutlet weak var tempLBL: UILabel!
+  @IBOutlet weak var nameLBL: UILabel!
+  @IBOutlet weak var dateLBL: UILabel!
+  @IBOutlet weak var tempLBL: UILabel!
+  
+  var list: List? {
+    didSet {
+      nameLBL.text = list?.name
+      let inputFormatter = DateFormatter()
+      inputFormatter.dateFormat = "dd/MM/yyyy"
+      let day = inputFormatter.string(from: Date(timeIntervalSince1970: list!.listDT))
+      dateLBL.text = day
+      tempLBL.text = String(format: "%.0f", list?.main.temp.rounded() ?? 0) + "°C"
+    }
+  }
+  
   @IBAction func tapDeletingBTN(_ sender: Any) {
-    editingCityCVCellDelegate?.tapDelete(indexPath: indexPath!)
+    editingCityCVCellDelegate?.tapDelete(row: row!)
   }
   @IBAction func tapEditingBTN(_ sender: Any) {
-    editingCityCVCellDelegate?.tapEdit(indexPath: indexPath!)
+    editingCityCVCellDelegate?.tapEdit(row: row!)
   }
 }

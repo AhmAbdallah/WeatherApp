@@ -15,4 +15,14 @@ class CityCVCell: UICollectionViewCell {
   @IBOutlet weak var dateLBL: UILabel!
   @IBOutlet weak var tempLBL: UILabel!
   
+  var list: List? {
+    didSet {
+      nameLBL.text = list?.name
+      let inputFormatter = DateFormatter()
+      inputFormatter.dateFormat = "dd/MM/yyyy"
+      let day = inputFormatter.string(from: Date(timeIntervalSince1970: list!.listDT))
+      dateLBL.text = day
+      tempLBL.text = String(format: "%.0f", list?.main.temp.rounded() ?? 0) + "°C"
+    }
+  }
 }

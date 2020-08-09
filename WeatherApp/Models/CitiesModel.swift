@@ -11,13 +11,13 @@ import SwiftyJSON
 
 class CitiesModel: NSObject {
   var citiesGroup: [CityGroup]!
-  init(fromJson json: JSON!){
-    if json.isEmpty{
+  init(fromJson json: JSON!) {
+    if json.isEmpty {
       return
     }
     citiesGroup = [CityGroup]()
     let cityGroupArray = json["cityGroup"].arrayValue
-    for cityGroupJson in cityGroupArray{
+    for cityGroupJson in cityGroupArray {
       let value = CityGroup(fromJson: cityGroupJson)
       citiesGroup.append(value)
     }
@@ -27,13 +27,13 @@ class CitiesModel: NSObject {
 class CityGroup: NSObject {
   var cities: [City]!
   var groupTitle: String!
-  init(fromJson json: JSON!){
-    if json.isEmpty{
+  init(fromJson json: JSON!) {
+    if json.isEmpty {
       return
     }
     cities = [City]()
     let citiesArray = json["cities"].arrayValue
-    for citiesJson in citiesArray{
+    for citiesJson in citiesArray {
       let value = City(fromJson: citiesJson)
       cities.append(value)
     }

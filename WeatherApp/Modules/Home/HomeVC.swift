@@ -34,6 +34,8 @@ class HomeVC: UIViewController {
   }
   override func viewWillAppear(_ animated: Bool) {
     setupNavigationController()
+    let citiesArray = WeatherAppSessionManager.shared.citiesArray
+    homeVM?.getWeatherDataFor(cityId: "\(citiesArray?.count ?? 0 > 0 ? citiesArray?[0].cityId ?? 0 : 0)")
   }
 }
 

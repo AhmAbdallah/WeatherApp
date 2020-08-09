@@ -35,6 +35,7 @@ class CitiesVC: UIViewController {
   }
   override func viewWillAppear(_ animated: Bool) {
     setupNavigationController()
+    citiesVM?.getCitiesGroupData()
   }
 }
 
@@ -52,7 +53,7 @@ extension CitiesVC {
     navigationItem.leftBarButtonItem = editTheCitiesBTN
   }
   @objc func addNewCity() {
-    citiesCoordinator?.openAddNewCityVC()
+    citiesCoordinator?.openAddNewCityVC(isAddingMode: true)
   }
   @objc func editTheCities() {
     if editingModeIsActive {
@@ -89,8 +90,6 @@ extension CitiesVC {
     citiesCollectionView!.backgroundColor = .appBackgroundColor
     citiesCollectionView.showsVerticalScrollIndicator = false
     citiesCollectionView .addSubview(refreshcontrol)
-    citiesCollectionView.delegate = self
-    citiesCollectionView.dataSource = self
   }
 }
 
@@ -104,20 +103,23 @@ extension CitiesVC: UICollectionViewDataSource {
     return 1
   }
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 10
+    return citiesVM?.getRowCount() ?? 0
   }
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let row = indexPath.row
     if editingModeIsActive {
       guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EditingCityCVCell.identifier,
                                                           for: indexPath) as? EditingCityCVCell else {
                                                             fatalError("Unexpected Index Path")}
       cell.editingCityCVCellDelegate = self
-      cell.indexPath = indexPath
+      cell.row = row
+      cell.list = citiesVM?.getListFor(row: row)
       return cell
     } else {
       guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CityCVCell.identifier,
                                                           for: indexPath) as? CityCVCell else {
                                                             fatalError("Unexpected Index Path")}
+      cell.list = citiesVM?.getListFor(row: row)
       return cell
     }
   }
@@ -154,18 +156,23 @@ extension CitiesVC: ViewControllerDelegate {
   }
 }
 
-//extension HomeVC: ProductReturningVMDelegate {
-//  func updateUI() {
-//    productReturningCV.delegate = self
-//    productReturningCV.dataSource = self
-//    productReturningCV.reloadData()
-//  }
-//}
+extension CitiesVC: CitiesVMDelegate {
+  func updateUI() {
+    citiesCollectionView.delegate = self
+    citiesCollectionView.dataSource = self
+    citiesCollectionView.reloadData()
+  }
+  
+  func showAddNewCityVC() {
+    citiesCoordinator?.openAddNewCityVC(isAddingMode: false)
+  }
+}
 
 extension CitiesVC: EditingCityCVCellDelegate {
-  func tapDelete(indexPath: IndexPath) {
-    citiesCollectionView.deleteItems(at: [indexPath])
+  func tapDelete(row: Int) {
+    citiesVM?.deleteDataFor(row: row)
   }
-  func tapEdit(indexPath: IndexPath) {
+  func tapEdit(row: Int) {
+    //next
   }
 }

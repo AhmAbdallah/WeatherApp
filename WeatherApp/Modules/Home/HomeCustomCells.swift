@@ -20,6 +20,7 @@ class HomeCustomCells {
                                                         for: indexPath) as? HomeCitiesCVCell else {
                                                           fatalError("Unexpected Index Path")}
     cell.homeCitiesCVCellDelegate = homeVC
+    cell.citiesArray = WeatherAppSessionManager.shared.citiesArray
     cell.setupViewUI()
     return cell
   }

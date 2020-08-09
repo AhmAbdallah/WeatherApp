@@ -24,16 +24,20 @@ extension CitiesCoordinator {
     let citiesVM = CitiesVM()
     let citiesVC = CitiesVC(citiesVM: citiesVM)
     citiesVC.citiesCoordinator = self
+    citiesVM.viewControllerDelegate = citiesVC
+    citiesVM.citiesVMDelegate = citiesVC
+    citiesVM.getCitiesGroupData()
     citiesVC.tabBarItem = UITabBarItem(title: "Şehirler", image: R.image.iconCitiesTabBarUnSelected(), tag: 0)
     citiesVC.tabBarItem.selectedImage = R.image.iconCitiesTabBarSelected()
     navigationController.pushViewController(citiesVC, animated: true)
   }
-  func openAddNewCityVC() {
+  func openAddNewCityVC(isAddingMode: Bool) {
     let addNewCityVM = AddNewCityVM()
     let addNewCityVC = AddNewCityVC(addNewCityVM: addNewCityVM)
-    addNewCityVC.isAddingMode = true
+    addNewCityVC.isAddingMode = isAddingMode
     let addNewCityNavigationController = UINavigationController(rootViewController: addNewCityVC)
     addNewCityNavigationController.modalPresentationStyle = .fullScreen
     navigationController.present(addNewCityNavigationController, animated: true, completion: nil)
   }
+  
 }
